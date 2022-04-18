@@ -96,14 +96,7 @@ sudo nano /etc/mosquitto/mosquitto.conf
     allow_anonymous false
     password_file /etc/mosquitto/passwd
 
-systemctl restart mosquitto
-
-
-sudo pkill -u pi
-
-sudo deluser -remove-home pi
-
-sudo rm -Rfv /etc/sudoers.d/010_pi-nopasswd
+sudo systemctl restart mosquitto
 ### FSTAB:
 lsblk (reccuperation du chemin)
 
@@ -111,7 +104,7 @@ sudo blkid (reccuperation du UUID)
 
 sudo nano /etc/fstab
 
-    UUID=4EE4CAB5E4CA9E99   /media/senacra/Data2To/ ntfs-3g permissions,defaults    0   0
+    UUID=70FCF8C36B663AF4   /media/USER/Data2To/ ntfs-3g permissions,defaults,nofail    0   0
 ### MINIDLNA:
 sudo nano /etc/default/minidlna
 
@@ -120,6 +113,7 @@ sudo nano /etc/default/minidlna
     GROUP="USER"
     DAEMON_OPTS="-r"
 
+sudo mkdir /etc/systemd/system/minidlna.service.d/
 sudo nano /etc/systemd/system/minidlna.service.d/run-as-user.conf
 
     [Service]
@@ -134,9 +128,9 @@ sudo nano /etc/minidlna.conf
     media_dir=A,/var/lib/minidlna/music
     media_dir=V,/var/lib/minidlna/videos
     media_dir=P,/var/lib/minidlna/pictures
-    db_dir=/media/senacra/Data2To/
+    db_dir=/media/USER/Data2To/
     port=8200
-    friendly_name=BULLE
+    friendly_name=NAME
     serial=123456789
     model_number=1
     inotify=yes
@@ -149,7 +143,7 @@ sudo ln -s /media/senacra/Data2To/Musique /var/lib/minidlna/music
 sudo ln -s /media/senacra/Data2To/Vidéos /var/lib/minidlna/videos
 
 sudo ln -s /media/senacra/Data2To/Pictures /var/lib/minidlna/pictures
-###SMB.CONF:
+### SAMBA:
 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.ORI
 
 sudo nano /etc/samba/smb.conf
