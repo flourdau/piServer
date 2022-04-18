@@ -25,7 +25,7 @@ sudo rpi-update
 
 sudo reboot -h 0
 
-sudo apt-get install -y htop git fail2ban ntfs-3g samba samba-common-bin minidlna mosquitto hostapd
+sudo apt-get install -y htop git fail2ban ntfs-3g samba samba-common-bin minidlna mosquitto hostapd raspberrypi-ui-mods rpi-imager rpi-chromium-mods rpd-wallpaper vlc
 ### SSH:
 
 mkdir .ssh
@@ -54,6 +54,8 @@ scp.exe -P44044 .\.ssh\id_rsa.pub USER@IP:~/.ssh/authorized_keys
 ssh -p44044 USER@IP
 #### Change & Add
 sudo nano /etc/ssh/sshd_config
+
+...
 
     ChallengeResponseAuthentication no
     PasswordAuthentication no
@@ -93,6 +95,8 @@ sudo mosquitto_passwd -c /etc/mosquitto/passwd USER
 
 sudo nano /etc/mosquitto/mosquitto.conf
 
+...
+
     allow_anonymous false
     password_file /etc/mosquitto/passwd
 
@@ -104,7 +108,13 @@ sudo blkid (reccuperation du UUID)
 
 sudo nano /etc/fstab
 
+...
+
     UUID=70FCF8C36B663AF4   /media/USER/Data2To/ ntfs-3g permissions,defaults,nofail    0   0
+
+sudo mount /media/USER/Data2To/
+
+sudo reboot
 ### MINIDLNA:
 sudo nano /etc/default/minidlna
 
@@ -114,6 +124,7 @@ sudo nano /etc/default/minidlna
     DAEMON_OPTS="-r"
 
 sudo mkdir /etc/systemd/system/minidlna.service.d/
+
 sudo nano /etc/systemd/system/minidlna.service.d/run-as-user.conf
 
     [Service]
@@ -138,13 +149,13 @@ sudo nano /etc/minidlna.conf
     album_art_names=AlbumArt.jpg/albumart.jpg/Album.jpg/album.jpg
     album_art_names=Folder.jpg/folder.jpg/Thumb.jpg/thumb.jpg
 
-sudo ln -s /media/senacra/Data2To/Musique /var/lib/minidlna/music
+sudo ln -s /media/USER/Data2To/Musique /var/lib/minidlna/music
 
-sudo ln -s /media/senacra/Data2To/Vidéos /var/lib/minidlna/videos
+sudo ln -s /media/USER/Data2To/Vidéos /var/lib/minidlna/videos
 
-sudo ln -s /media/senacra/Data2To/Pictures /var/lib/minidlna/pictures
+sudo ln -s /media/USER/Data2To/Pictures /var/lib/minidlna/pictures
 ### SAMBA:
-sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.ORI
+sudo cp -Rpv /etc/samba/smb.conf /etc/samba/smb.conf.ORI
 
 sudo nano /etc/samba/smb.conf
 
@@ -196,6 +207,8 @@ sudo systemctl restart smbd.service
 ### GUI:
 [Forum RaspberryPi.com](https://forums.raspberrypi.com/viewtopic.php?t=133691 "Topic détaillé")
 
+sudo apt-get install raspberrypi-ui-mods rpi-imager rpi-chromium-mods rpd-wallpaper vlc
+
 ##  ACCESS POINT:
 ### INSTALL:
 
@@ -220,7 +233,7 @@ sudo nano /etc/systemd/network/bridge-br0.netdev
 sudo nano /etc/systemd/network/br0-member-usb0.network
 
     [Match]
-    Name=eth0 usb0lo
+    Name=eth0 usb0 lo
 
     [Network]
     Bridge=br0
@@ -231,7 +244,8 @@ sudo cp -Rpv /etc/dhcpcd.conf /etc/dhcpcd.conf.ORI
 
 sudo nano /etc/dhcpcd.conf
 
-    option ntp_servers
+...
+
     denyinterface wlan0 eth0 usb0
     interface br0
 
@@ -321,8 +335,8 @@ sudo nano /etc/sudoers.d/010_USER-nopasswd
 
 sudo reboot -h 0
 ### DEL USER:
-sudo pkill -u pi
+sudo pkill -u USER
 
-sudo deluser -remove-home pi
+sudo deluser -remove-home USER
 
-sudo rm -Rfv /etc/sudoers.d/010_pi-nopasswd
+sudo rm -Rfv /etc/sudoers.d/010_USER-nopasswd
