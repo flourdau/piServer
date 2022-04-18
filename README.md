@@ -1,9 +1,9 @@
-# piServer
 #   piServer.md
     flourdau
-    10 avril 2022
+    18 avril 2022
 
 ##  SETUP:
+    ⚠ ATTENTION à bien remplacer USER, IP, YOUR_DOMAIN_NAME... & modifier le PORT!
 ### UPDATE:
 sudo raspi-config
 
@@ -25,10 +25,8 @@ sudo rpi-update
 
 sudo reboot -h 0
 
-
-sudo apt-get install -y htop git fail2ban ntfs-3g samba samba-common-bin minidlna mosquitto hostapd dnsmasq
+sudo apt-get install -y htop git fail2ban ntfs-3g samba samba-common-bin minidlna mosquitto hostapd
 ### SSH:
-#### ⚠ (ATTENTION A BIEN REMPLACER USER,IP & MODIF LE PORT!)
 
 mkdir .ssh
 
@@ -201,6 +199,8 @@ sudo nano /etc/samba/smb.conf
 sudo smbpasswd -a USER
 
 sudo systemctl restart smbd.service
+### GUI:
+[Forum RaspberryPi.com](https://forums.raspberrypi.com/viewtopic.php?t=133691 "Topic détaillé")
 
 ##  ACCESS POINT:
 ### INSTALL:
@@ -209,25 +209,13 @@ sudo apt-get update
 
 sudo apt-get dist-upgrade
 
-sudo apt-get install hostapd dnsmasq
+sudo apt-get install hostapd
 
 sudo systemctl unmask hostapd
 
 sudo systemctl enable hostapd
 
 sudo systemctl stop hostapd
-### ROUTING:
-sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
-
-sudo nano /etc/sysctl.d/routed-ap.conf
-
-    net.ipv4.ip_forward=1
-
-sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-
-sudo iptables -t nat -A POSTROUTING -o usb0 -j MASQUERADE
-
-sudo netfilter-persistent save
 ### BRIDGE:
 sudo nano /etc/systemd/network/bridge-br0.netdev
 
@@ -238,10 +226,12 @@ sudo nano /etc/systemd/network/bridge-br0.netdev
 sudo nano /etc/systemd/network/br0-member-usb0.network
 
     [Match]
-    Name=eth0 usb0
+    Name=eth0 usb0lo
 
     [Network]
     Bridge=br0
+
+sudo systemctl enable systemd-networkd
 ### DHCPCD:
 sudo cp -Rpv /etc/dhcpcd.conf /etc/dhcpcd.conf.ORI
 
@@ -252,20 +242,6 @@ sudo nano /etc/dhcpcd.conf
     interface br0
 
 sudo service dhcpcd restart
-### DNSMASQ:
-sudo cp -Rpv /etc/dnsmasq.conf /etc/dnsmasq.conf.ORI
-
-sudo nano /etc/dnsmasq.conf
-
-    domain=GALAXIE
-    interface=wlan0
-    listen-address=127.0.0.1,192.168.42.42
-    port=53
-    dhcp-range=wlan0,192.168.42.100,192.168.42.199
-    dhcp-range=eth0,192.168.42.200,192.168.42.245
-    domain-needed
-    bogus-priv
-    address=/gw.wlan/192.168.42.42
 ### HOSTAPD:
 sudo rfkill unblock wlan
 
