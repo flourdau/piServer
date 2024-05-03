@@ -1,11 +1,11 @@
 #   piServer.md
     flourdau
-    18 avril 2022
+    02 Mai 2024
 
 ##  SETUP:
     ⚠ ATTENTION à bien remplacer USER, IP, YOUR_DOMAIN_NAME... & modifier le PORT!
 ### UPDATE:
-sudo raspi-config
+sudo raspi-config  
 
     # activer le i2c si horloge
     # activer le ssh, vnc, gpio...
@@ -110,7 +110,7 @@ sudo nano /etc/fstab
 
 ...
 
-    UUID=70FCF8C36B663AF4   /media/USER/Data2To/ ntfs-3g permissions,defaults,nofail    0   0
+    UUID=70FCF8C36B663AE4   /media/USER/Data2To/ ntfs-3g permissions,defaults,nofail    0   0
 
 sudo mount /media/USER/Data2To/
 
