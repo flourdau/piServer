@@ -157,9 +157,9 @@ Raspberry Pi Imager: https://www.raspberrypi.com/software/
 
 
 ## FSTAB :
-`lsblk` (récupération du chemin)
-`sudo blkid` (récupération de l'UUID)
-`sudo nano /etc/fstab`
+`lsblk` (récupération du chemin)  
+`sudo blkid` (récupération de l'UUID)  
+`sudo nano /etc/fstab`  
 
 ...
 
@@ -205,8 +205,8 @@ Raspberry Pi Imager: https://www.raspberrypi.com/software/
 `sudo ln -s /media/USER/Data2To/Vidéos /var/lib/minidlna/videos`  
 `sudo ln -s /media/USER/Data2To/Pictures /var/lib/minidlna/pictures`  
 
-`sudo systemctl enable minidlna.service`
-`sudo systemctl start minidlna.service`
+`sudo systemctl enable minidlna.service`  
+`sudo systemctl start minidlna.service`  
 `sudo service minidlna force-reload`
 
 
@@ -292,17 +292,17 @@ Raspberry Pi Imager: https://www.raspberrypi.com/software/
 
 
 ### AJOUTER UN UTILISATEUR :
-`sudo adduser USER`
-`sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi,minidlna USER`
-`sudo cp -Rpv /etc/sudoers.d/010_pi-nopasswd /etc/sudoers.d/010_USER-nopasswd`
-`sudo nano /etc/sudoers.d/010_USER-nopasswd`
+`sudo adduser USER`  
+`sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi,minidlna USER`  
+`sudo cp -Rpv /etc/sudoers.d/010_pi-nopasswd /etc/sudoers.d/010_USER-nopasswd`  
+`sudo nano /etc/sudoers.d/010_USER-nopasswd`  
 
     USER ALL=(ALL) PASSWD: ALL
 
-`sudo reboot`
+`sudo reboot`  
 
 
 ### SUPPRIMER UN UTILISATEUR :
-`sudo pkill -u USER`
-`sudo deluser --remove-home USER`
-`sudo rm -Rfv /etc/sudoers.d/010_USER-nopasswd`
+`sudo pkill -u USER`  
+`sudo deluser --remove-home USER`  
+`sudo rm -Rfv /etc/sudoers.d/010_USER-nopasswd`  
