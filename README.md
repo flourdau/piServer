@@ -1,6 +1,6 @@
 <h1 style="display:none">PiServer</h1>
 
-```ini
+```
 	##  ###      ## ### ##  # # ### ##  
 	# #  #      #   #   # # # # #   # #  
 	##   #       #  ##  ##  # # ##  ##   
@@ -415,7 +415,7 @@ echo "NODE_RED_CREDENTIAL_SECRET=$(openssl rand -hex 32)" | sudo tee /etc/defaul
 sudo nano ~/.node-red/settings.js
 ```
 
-```ini
+```
 uiHost: "::",
 ```
 
@@ -568,7 +568,7 @@ sudo mariadb-dump --all-databases > ~/backup/mariadb-$(date +%F).sql
 ```
 ###		2. Aliases  
 `nano .bash_aliases`  
-```ini
+```
 alias PERFS="clear;df -h / && df -h /mnt/data2to && free -h"
 alias Rfresh="source ~/.bashrc"
 alias cls="clear;ls"
@@ -584,7 +584,7 @@ sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,
 sudo cp -Rpv /etc/sudoers.d/010_pi-nopasswd /etc/sudoers.d/010_USER-nopasswd
 sudo nano /etc/sudoers.d/010_USER-nopasswd
 ```
-```ìni
+```ini
 USER ALL=(ALL:ALL) ALL
 ```
 `sudo reboot`  
