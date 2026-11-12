@@ -30,6 +30,7 @@ Bon doubles & triples clics!* ^^
 - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 - [Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/)
 ###	⚠️ Variables à remplacer dans le tutoriel ⚠️
+
 | Variable | Signification |
 |----------|---------------|
 | `USER` | Utilisateur créé avec l'Imager |
@@ -37,6 +38,7 @@ Bon doubles & triples clics!* ^^
 | `PORT` | Port |
 | `LAN_CIDR` | Groupe réseau |
 | `UUID_NTFS` | Identifiant HDD |
+
 ---
 
 ##	📋 PRÉPARATION :
