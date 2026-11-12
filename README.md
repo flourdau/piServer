@@ -29,6 +29,9 @@ Bon doubles & triples clics!* ^^
 - [Raspberry Pi OS - ISO](https://www.raspberrypi.com/software/operating-systems/)  
 - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 - [Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/)
+
+---
+
 ###	⚠️ Variables à remplacer dans le tutoriel ⚠️
 
 | Variable | Signification |
