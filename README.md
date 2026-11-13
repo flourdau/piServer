@@ -441,6 +441,7 @@ sudo systemctl enable --now nodered.service
 | Node-RED actif | `systemctl is-active nodered` | `active` |
 | Éditeur protégé | navigateur : `http://HOSTNAME_IP:1880` | écran de connexion |
 | Ports | `sudo ss -tlnp \| grep -E '1883\|1880'` | en écoute |
+
 ---
 
 
