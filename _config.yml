@@ -1,3 +1,7 @@
-remote_theme: cotes2020/jekyll-theme-chirpy
+title: piServer
+description: Documentation et scripts d'installation Raspberry Pi
+remote_theme: just-the-docs/just-the-docs
+color_scheme: dark
+
 plugins:
   - jekyll-remote-theme
