@@ -7,7 +7,7 @@
 	@flourdau
 ```
 ##	🌍 Hello World!  
-*Si vous souhaitez installer **Raspberry Pi OS Lite** (Debian 13 *Trixie*), en faire un **serveur multimédia** avec un disque dur (extern USB3 2To dans mon cas) 
+*Si vous souhaitez installer **Raspberry Pi OS Lite** (Debian 13 Trixie), en faire un **serveur multimédia** avec un disque dur (extern USB3 2To dans mon cas) 
 Je centralise & partage [mes notes ici](https://flourdau.github.io/piServer/)!  
 Bon doubles & triples clics!* ^^
 
@@ -159,13 +159,13 @@ ssh-copy-id -pPORT USER@HOSTNAME
 ```
 ---
 *Ou avec **PowerShell** :*
-```cmd 
+```
 ssh-keygen.exe  -t ed25519
 ```
-```cmd
+```
 scp.exe -PPORT .\.ssh\id_ed25519.pub USER@HOSTNAME:~/.ssh/authorized_keys
 ```
-```cmd
+```
 ssh -pPORT USER@HOSTNAME
 ```
 ####	Configurations :  
@@ -550,7 +550,6 @@ symfony check:requirements
 ##	🔎 CONTRÔLE FINAL :
 
 ```bash
-
 sudo nft list ruleset
 systemctl is-active ssh fail2ban nftables smbd minidlna mosquitto nodered apache2 php8.4-fpm mariadb
 sudo ss -tlnp
