@@ -11,7 +11,7 @@
 Je centralise & partage [mes notes ici](https://flourdau.github.io/piServer/)!  
 Bon doubles & triples clics!* ^^
 
-##	SOMMAIRE:
+##	SOMMAIRE :
 - 📋 **Préparation**
 - 🔧 **Configurations**
 - 🛡️ **Sécurisation OS & réseau** *(nftables, fail2ban, ssh)*
@@ -19,7 +19,7 @@ Bon doubles & triples clics!* ^^
 - 🤖 **Coeur IoT** *(nodejs, nodered)*
 - 🌍 **Stack Web** *(apache2, php, mariadb, symfony)*
 
-###	🔗 Liens: 
+###	🔗 Liens : 
 - [Raspberry Pi](https://www.raspberrypi.com)  
 - [Raspberry Pi OS - ISO](https://www.raspberrypi.com/software/operating-systems/)  
 - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
@@ -271,7 +271,7 @@ sudo nano /etc/fstab
 ```
 ⚠️ **Remplacez** `UUID_NTFS` par **votre UUID**
 
-```text
+```bash
 UUID=UUID_NTFS  /mnt/data2to  ntfs-3g  rw,uid=1000,gid=1000,umask=022,big_writes,nofail,x-systemd.device-timeout=10  0  0
 ```
 
@@ -296,7 +296,7 @@ touch /mnt/data2to/test_ecriture && rm -v /mnt/data2to/test_ecriture
 sudo cp -a /etc/samba/smb.conf /etc/samba/smb.conf.ORI
 sudo nano /etc/samba/smb.conf
 ```
-```samba
+```ini
 [global]
    workgroup = WORKGROUP
    server string = HOSTNAME
@@ -384,22 +384,8 @@ sudo chown mosquitto:mosquitto /etc/mosquitto/passwd
 sudo chmod 640 /etc/mosquitto/passwd
 sudo systemctl enable --now mosquitto
 sudo systemctl restart mosquitto
-
 ```
 
-**Contrôle** :
-
-```bash
-systemctl status mosquitto
-mosquitto_pub -h localhost -t test/HOSTNAME -m "ok"
-```
-La commande ci-dessus doit être **refusée** (pas d'authentification). Avec identifiants :
-
-```bash
-mosquitto_sub -h localhost -t test/HOSTNAME -u USER -W 5 &
-mosquitto_pub -h localhost -t test/HOSTNAME -m "ok" -u USER
-```
-Chaque commande avec `-u` demande le mot de passe au clavier (option `-P` à éviter).
 ###		2. Node-RED
 ####		1. Installation
 ```bash
